@@ -1,6 +1,8 @@
-import React, { Component } from "react";
-import Form from "./components/Form.jsx";
-import List from "./components/List.jsx";
+import React, { Component } from 'react';
+import Form from './components/Form.jsx';
+import List from './components/List.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
 
 // import MoreInfo from "./components/MoreInfo";
 
@@ -8,6 +10,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+<<<<<<< HEAD
+
+    };
+=======
       showPopup: false,
       brand: '',
       price: 0,
@@ -114,8 +120,19 @@ class App extends Component {
     this.setState({
         title:event.target.value,
       })
+>>>>>>> master
   }
+
   render() {
+<<<<<<< HEAD
+    // whatever stuff
+    return (
+      <div>
+        {/* <p>hello</p>
+          <Form />
+          <List /> */}
+        <Signup />
+=======
 
     return(
       <div>
@@ -147,8 +164,9 @@ class App extends Component {
           /> : null
         }
         <List listing={this.state.listing}/>
+>>>>>>> master
       </div>
-    )
+    );
   }
 }
 export default App;
