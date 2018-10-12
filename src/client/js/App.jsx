@@ -17,8 +17,10 @@ class App extends Component {
       title: '',
       condition: '',
       imgUrl: '',
-      listing: [{imgUrl: '', id: 1, title: 'Test', price: 10, condition: 'NWT', brand: 'xx', size:100}],
-    }
+      listing: [{
+        imgUrl: '', id: 1, title: 'Test', price: 10, condition: 'NWT', brand: 'xx', size: 100,
+      }],
+    };
     this.togglePopup = this.togglePopup.bind(this);
     this.createNew = this.createNew.bind(this);
     this.updateSelectedBrand = this.updateSelectedBrand.bind(this);
@@ -39,34 +41,34 @@ class App extends Component {
     //       listing: data,
     //     });
     //   })
-    }
+  }
 
   createNew() {
     const newList = this.state.listing.slice();
     newList.push({
       imgUrl: '',
-      id: 'id'+newList.length, 
-      title: this.state.title, 
-      price: this.state.price, 
+      id: `id${newList.length}`,
+      title: this.state.title,
+      price: this.state.price,
       size: this.state.size,
-      condition: this.state.condition, 
+      condition: this.state.condition,
       brand: this.state.brand,
     });
     this.setState({
       ...this.state,
       listing: newList,
-    })
+    });
 
-    //make the post request here?
+    // make the post request here?
 
     // fetch('/content', {
     //     method: 'POST',
     //     headers: {
     //       "Content-Type": "application/json; charset=utf-8",
     //     },
-        
+
     //     body: JSON.stringify({
-    //      
+    //
     //
     //     })
     //   })
@@ -74,7 +76,7 @@ class App extends Component {
     //     console.log(data)
     //     return data.json();
     //   })
-    //   .then(newItem => {   
+    //   .then(newItem => {
     //     listCopy.push(newItem);
     //     this.setState({
     //       ...this.state,
@@ -92,64 +94,71 @@ class App extends Component {
   }
 
   // all the updating little functions when you pick brand/size/write title
-  updateSelectedBrand(event){
-      this.setState({
-          brand:event.target.value,
-      })
-  }
-  updateSelectedSize(event){
-      this.setState({
-        size:event.target.value,
-      })
-  }
-  updateSelectedCondition(event){
-      this.setState({
-        condition:event.target.value,
-      })
-  }
-  updatePrice(event){
+  updateSelectedBrand(event) {
     this.setState({
-        price:event.target.value,
-      })
+      brand: event.target.value,
+    });
   }
-  updateTitle(event){
+
+  updateSelectedSize(event) {
+    this.setState({
+      size: event.target.value,
+    });
+  }
+
+  updateSelectedCondition(event) {
+    this.setState({
+      condition: event.target.value,
+    });
+  }
+
+  updatePrice(event) {
+    this.setState({
+      price: event.target.value,
+    });
+  }
+
+  updateTitle(event) {
     this.setState({
         title:event.target.value,
       })
-  }
+  } 
 
   render() {
-
-    return(
+    return (
       <div>
         <nav>
           <button>login</button>
           <button onClick={this.togglePopup}>post</button>
-          <br></br>
+          <br />
 
           <select>
-              <option defaultValue="kevin">----kevin----</option>
-              <option>brand</option>
-              <option>size</option>
-              <option>condition</option>        
+            <option defaultValue="kevin">----kevin----</option>
+            <option>brand</option>
+            <option>size</option>
+            <option>condition</option>
           </select>
 
           <select>
-              <option>get lots of stuff back from db, how</option>
+            <option>get lots of stuff back from db, how</option>
           </select>
 
         </nav>
 
-        {this.state.showPopup ? 
-          <Form createNew={this.createNew} togglePopup={this.togglePopup} 
-          updateSelectedBrand={this.updateSelectedBrand} 
-          updateSelectedSize={this.updateSelectedSize}
-          updateSelectedCondition={this.updateSelectedCondition}
-          updateTitle={this.updateTitle}
-          updatePrice={this.updatePrice}
-          /> : null
+        {this.state.showPopup
+          ? (
+            <Form
+              createNew={this.createNew}
+              togglePopup={this.togglePopup}
+              updateSelectedBrand={this.updateSelectedBrand}
+              updateSelectedSize={this.updateSelectedSize}
+              updateSelectedCondition={this.updateSelectedCondition}
+              updateTitle={this.updateTitle}
+              updatePrice={this.updatePrice}
+            />
+          ) : null
         }
-        <List listing={this.state.listing}/>
+        <List listing={this.state.listing} />
       </div>
     );
   }
