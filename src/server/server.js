@@ -6,10 +6,11 @@ const userController = require('./controllers/userController.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 
-app.get('/', userController);
-app.post('/', userController);
-// app.put('/edit', memoController.editMemo);
-app.delete('/', userController);
+app.post('/signup', userController.createUser);
+app.get('/login', userController.getUser);
+app.get('/listing', userController.getListing);
+app.post('/listing', userController.postList);
+app.get('/filterbybrand', userController.filterByBrand);
 app.use(express.static(__dirname + '/../../dist'));
 
 app.listen(3000, (err) => {
