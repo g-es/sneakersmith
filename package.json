@@ -1,7 +1,7 @@
 {
   "name": "sneakersmith",
   "version": "1.0.0",
-  "description": "scratch project",
+  "description": "scratch project 10-11-18",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
@@ -20,6 +20,7 @@
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "pg": "^7.5.0",
+    "pg-promise": "^8.5.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   }
