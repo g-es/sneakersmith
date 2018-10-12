@@ -10,13 +10,11 @@
   },
   "author": "kevinMui, geSun, paulGi",
   "license": "ISC",
-
   "devDependencies": {
     "nodemon": "^1.18.4",
     "parcel": "^1.10.3",
     "parcel-bundler": "^1.10.3"
   },
-  
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
