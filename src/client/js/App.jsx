@@ -10,10 +10,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-<<<<<<< HEAD
-
-    };
-=======
       showPopup: false,
       brand: '',
       price: 0,
@@ -120,19 +116,9 @@ class App extends Component {
     this.setState({
         title:event.target.value,
       })
->>>>>>> master
   }
 
   render() {
-<<<<<<< HEAD
-    // whatever stuff
-    return (
-      <div>
-        {/* <p>hello</p>
-          <Form />
-          <List /> */}
-        <Signup />
-=======
 
     return(
       <div>
@@ -164,7 +150,6 @@ class App extends Component {
           /> : null
         }
         <List listing={this.state.listing}/>
->>>>>>> master
       </div>
     );
   }
