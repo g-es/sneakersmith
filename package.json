@@ -1,7 +1,7 @@
 {
   "name": "sneakersmith",
   "version": "1.0.0",
-  "description": "scratch project",
+  "description": "scratch project 10-11-18",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
