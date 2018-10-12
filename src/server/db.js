@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const initOptions = {
   connect(client, dc, useCount) {
     const cp = client.connectionParameters;
@@ -17,9 +19,11 @@ const initOptions = {
 
 const pgp = require('pg-promise')(initOptions);
 
-require('dotenv').config();
+console.log(process.env.SQL_URL);
 
-export default db = pgp(process.env.SQL_URL);
+const db = pgp('postgres://ydumjrcw:Po-cSeTIsFLIbV433LVf7XO0vnDqEWQq@baasu.db.elephantsql.com:5432/ydumjrcw');
+
+module.exports = db;
 
 // UUID.
 // db.any('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
@@ -55,7 +59,7 @@ export default db = pgp(process.env.SQL_URL);
 //   });
 
 // Select from userinfo.
-// db.any('SELECT * FROM userinfo";')
+// db.any('SELECT * FROM userinfo;')
 //   .then((data) => {
 //   // success;
 //     console.log('Sucess.', data);
@@ -100,6 +104,28 @@ export default db = pgp(process.env.SQL_URL);
 
 // Select by brand.
 // db.any('SELECT * FROM listing WHERE brand = $1;', ['Converse'])
+//   .then((data) => {
+//     // success;
+//     console.log('Sucess.', data);
+//   })
+//   .catch((error) => {
+//     // error;
+//     console.log(error);
+//   });
+
+// Select by condition.
+// db.any('SELECT * FROM listing WHERE condition = $1;', ['Converse'])
+//   .then((data) => {
+//     // success;
+//     console.log('Sucess.', data);
+//   })
+//   .catch((error) => {
+//     // error;
+//     console.log(error);
+//   });
+
+// Select by user.
+// db.any('SELECT * FROM listing WHERE user = $1;', ['Converse'])
 //   .then((data) => {
 //     // success;
 //     console.log('Sucess.', data);
@@ -195,3 +221,5 @@ export default db = pgp(process.env.SQL_URL);
 //     // error;
 //     console.log(error);
 //   });
+
+// export const db = pgp(process.env.SQL_URL);

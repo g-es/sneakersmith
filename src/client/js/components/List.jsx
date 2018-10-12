@@ -1,19 +1,18 @@
 import React from "react";
 import SingleBox from "./SingleBox";
 class List extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
     }
     render(){
         // map through the array? to display
-        let arr = [1,2,3];
+        let arr = this.props.listing;
         let testList = [];
         arr.forEach(i=>{
-          testList.push(<SingleBox key={i}/>)
+          testList.push(<SingleBox key={i} content={i}/>)
         })
-        console.log(testList)
         return(
-            <div>{testList}</div>
+          <div>{testList}</div>
         )
     }
 }
