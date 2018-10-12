@@ -120,9 +120,9 @@ class App extends Component {
 
   updateTitle(event) {
     this.setState({
-      title: event.target.value,
-    });
-  }
+        title:event.target.value,
+      })
+  } 
 
   render() {
     return (
