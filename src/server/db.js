@@ -1,4 +1,4 @@
-require('../../../.env').config();
+require('dotenv').config();
 
 const initOptions = {
   connect(client, dc, useCount) {
@@ -21,7 +21,7 @@ const pgp = require('pg-promise')(initOptions);
 
 console.log(process.env.SQL_URL);
 
-const db = pgp(process.env.SQL_URL);
+const db = pgp('postgres://ydumjrcw:Po-cSeTIsFLIbV433LVf7XO0vnDqEWQq@baasu.db.elephantsql.com:5432/ydumjrcw');
 
 module.exports = db;
 
@@ -104,6 +104,28 @@ module.exports = db;
 
 // Select by brand.
 // db.any('SELECT * FROM listing WHERE brand = $1;', ['Converse'])
+//   .then((data) => {
+//     // success;
+//     console.log('Sucess.', data);
+//   })
+//   .catch((error) => {
+//     // error;
+//     console.log(error);
+//   });
+
+// Select by condition.
+// db.any('SELECT * FROM listing WHERE condition = $1;', ['Converse'])
+//   .then((data) => {
+//     // success;
+//     console.log('Sucess.', data);
+//   })
+//   .catch((error) => {
+//     // error;
+//     console.log(error);
+//   });
+
+// Select by user.
+// db.any('SELECT * FROM listing WHERE user = $1;', ['Converse'])
 //   .then((data) => {
 //     // success;
 //     console.log('Sucess.', data);

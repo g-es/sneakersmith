@@ -7,10 +7,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 
 app.post('/signup', userController.createUser);
-app.get('/login', userController.getUser);
+app.post('/login', userController.getUser);
 app.get('/listing', userController.getListing);
-app.post('/listing', userController.postList);
-app.get('/filterbybrand', userController.filterByBrand);
+app.post('/listing', userController.postListing);
+app.get('/filterbybrand/:brand', userController.filterByBrand);
+app.get('/filterbycondition/:condition', userController.filterByCondition);
+app.get('/filterbyuser/:uid', userController.filterByUser);
 app.use(express.static(__dirname + '/../../dist'));
 
 app.listen(3000, (err) => {
