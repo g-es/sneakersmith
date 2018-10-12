@@ -1,0 +1,10 @@
+.singleBox{
+    background: red;
+    float: left;
+    width: 31%;
+    margin: 0 1%;
+}
+.uglyForm{
+    background: green;
+    width: 300px;
+}
