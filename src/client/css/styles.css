@@ -8,3 +8,27 @@
     background: green;
     width: 300px;
 }
+
+div.loginContainer {
+  margin: auto;
+  background-color: lightblue;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 5px 5px #888888;
+}
+
+p.loginText {
+  font-family: cursive;
+}
+
+input.loginInput {
+  width: 90%;
+}
+
+button.loginButton {
+  width: 45%;
+}
+
+h1{
+  font-family: cursive;
+}
