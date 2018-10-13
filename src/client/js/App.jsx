@@ -28,19 +28,27 @@ class App extends Component {
     this.updateSelectedSize = this.updateSelectedSize.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.updateUrl = this.updateUrl.bind(this);
+
   }
 
   componentDidMount() {
-    // fetch('/listing')
-    //   .then(data => {
-    //     return data.json();
-    //   })
-    //   .then(data => {
-    //     this.setState({
-    //       ...this.state,
-    //       listing: data,
-    //     });
-    //   })
+  
+    fetch('/listing')
+      .then(data => {
+        console.log(data)
+        return data.json();
+      })
+      .catch((err) => {
+        console.log(err,'errrr');
+      })
+  .then(data => {
+    console.log(data,'listing')
+    this.setState({
+      ...this.state,
+      listing: data,
+    });
+  })
   }
 
   createNew() {
@@ -54,6 +62,7 @@ class App extends Component {
       condition: this.state.condition,
       brand: this.state.brand,
     });
+    console.log(newList,'list',this.state.listing);
     this.setState({
       ...this.state,
       listing: newList,
@@ -61,28 +70,37 @@ class App extends Component {
 
     // make the post request here?
 
-    // fetch('/content', {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "application/json; charset=utf-8",
-    //     },
+    fetch('/listing', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
 
-    //     body: JSON.stringify({
-    //
-    //
-    //     })
-    //   })
-    //   .then(data => {
-    //     console.log(data)
-    //     return data.json();
-    //   })
-    //   .then(newItem => {
-    //     listCopy.push(newItem);
-    //     this.setState({
-    //       ...this.state,
-    //       listing: listCopy,
-    //     })
-    //   });
+        body: JSON.stringify({
+          brand: this.state.brand,
+          condition: this.state.condition,
+          imgurl: this.state.imgUrl,
+          key: "uuid_generate_v4()",
+          lid: this.state.listing.length,
+          listdate: new Date(),
+          price: this.state.price,
+          size: this.state.size,
+          title: this.state.title,
+          uid: 2,
+    
+        })
+      })
+      .then(data => {
+        console.log(data,'get back anything?')
+        return data.json();
+      })
+      // .then(newItem => {
+      //   newList.push(newItem);
+      //   this.setState({
+      //     ...this.state,
+      //     listing: newList,
+      //   })
+      // });
 
     this.togglePopup();
   }
@@ -123,7 +141,11 @@ class App extends Component {
         title:event.target.value,
       })
   } 
-
+  updateUrl(event) {
+    this.setState({
+      imgUrl:event.target.value
+    })
+  }
   render() {
     return (
       <div>
@@ -155,6 +177,7 @@ class App extends Component {
               updateSelectedCondition={this.updateSelectedCondition}
               updateTitle={this.updateTitle}
               updatePrice={this.updatePrice}
+              updateUrl={this.updateUrl}
             />
           ) : null
         }

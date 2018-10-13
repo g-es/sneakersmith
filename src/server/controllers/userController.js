@@ -7,7 +7,7 @@ module.exports = {
     .then((data) => {
     // success;
       console.log('Sucess.');
-      console.log(data);
+      // console.log(data);
     })
     .catch((error) => {
     // error;
@@ -18,7 +18,7 @@ module.exports = {
     db.any('SELECT * FROM userinfo;')
     .then((data) => {
     // success;
-      console.log('Sucess.', data);
+      console.log('Sucess.');
     })
     .catch((error) => {
     // error;
@@ -29,11 +29,13 @@ module.exports = {
     db.any('SELECT * FROM listing;')
     .then((data) => {
     // success;
-      console.log('Sucess.', data);
+      console.log('Sucess.');
+      res.json(data);
     })
     .catch((error) => {
     // error;
       console.log(error);
+      res.sendStatus(404);
     });
   },
   postListing: (req, res) => {
@@ -41,7 +43,7 @@ module.exports = {
     db.any('INSERT INTO listing(key, uid, title, brand, condition, size, price, imgurl, listdate) VALUES (uuid_generate_v4(), $1, $2, $3, $4, $5, $6, $7, now());', [uid, title, brand, condition, size, price, imgurl])
     .then((data) => {
     // success;
-      console.log('Sucess.', data);
+      console.log('Sucess.');
     })
     .catch((error) => {
     // error;
@@ -53,7 +55,7 @@ module.exports = {
     db.any('SELECT * FROM listing WHERE brand = $1;', [brand])
     .then((data) => {
       // success;
-      console.log('Sucess.', data);
+      console.log('Sucess.');
     })
     .catch((error) => {
       // error;
@@ -65,7 +67,7 @@ module.exports = {
     db.any('SELECT * FROM listing WHERE condition = $1;', [condition])
     .then((data) => {
       // success;
-      console.log('Sucess.', data);
+      console.log('Sucess.');
     })
     .catch((error) => {
       // error;
@@ -77,7 +79,7 @@ module.exports = {
     db.any('SELECT * FROM listing WHERE uid = $1;', [uid])
     .then((data) => {
       // success;
-      console.log('Sucess.', data);
+      console.log('Sucess.');
     })
     .catch((error) => {
       // error;
