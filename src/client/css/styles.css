@@ -1,5 +1,5 @@
 .singleBox{
-    background: red;
+    background: purple;
     float: left;
     width: 31%;
     /* height: 700px; */
@@ -9,7 +9,7 @@
     position: relative;
 }
 .formBackground{
-    background: green;
+    background: goldenrod;
     width: 300px;
     opacity: 0.9;
     width: 100%;

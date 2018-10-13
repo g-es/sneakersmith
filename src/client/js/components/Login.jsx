@@ -12,7 +12,7 @@ class Login extends Component {
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
-    this.updateEmail = this.updateEmail.bind(this);
+    this.validateUser = this.validateUser.bind(this);
   }
 
   updateUsername(event) {

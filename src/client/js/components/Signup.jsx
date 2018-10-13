@@ -31,7 +31,7 @@ class Signup extends Component {
 
   createUser() {
     const { username, password, email } = this.state;
-    fetch('/login', {
+    fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -54,7 +54,7 @@ class Signup extends Component {
         <p className="loginText">Password: </p>
         <input id="password" className="loginInput" type="password" onChange={updatePassword} />
         <p className="loginText">Email: </p>
-        <input id="email" className="loginInput" type="password" onChange={updateEmail} />
+        <input id="email" className="loginInput" onChange={updateEmail} />
         <br />
         <br />
         <button className="loginButton" onClick={createUser}>Sign up</button>
