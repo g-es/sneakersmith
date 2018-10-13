@@ -24,7 +24,7 @@ module.exports = {
     db.any('SELECT * FROM userinfo WHERE username = $1;', [username])
       .then((data) => {
         // success;
-        console.log('Sucess.', data);
+        // console.log('Sucess.', data);
         if (data.length !== 0) {
           const hash = data[0].password;
           bcrypt.compare(password, hash, (err, res) => {
@@ -72,6 +72,7 @@ module.exports = {
   },
   filterByBrand: (req, res) => {
     const { brand } = req.params;
+    console.log('adfa', brand);
     db.any('SELECT * FROM listing WHERE brand = $1;', [brand])
       .then((data) => {
       // success;

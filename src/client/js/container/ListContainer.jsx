@@ -56,6 +56,26 @@ class ListContainer extends Component {
       });
   }
 
+  componentDidUpdate() {
+    if (this.state.filterBy === '') {
+      fetch('/listing')
+        .then((data) => {
+          console.log(data);
+          return data.json();
+        })
+        .catch((err) => {
+          console.log(err, 'errrr');
+        })
+        .then((data) => {
+          console.log(data, 'listing');
+          this.setState({
+            ...this.state,
+            listing: data,
+          });
+        });
+    }
+  }
+
   createNew() {
     const newList = this.state.listing.slice();
     newList.push({
@@ -226,7 +246,7 @@ class ListContainer extends Component {
 
   getFilters(event) {
     const filterBy = event.target.value;
-    fetch(`/categories/${filterBy}`)
+    fetch(`/categories/${filterBy.toLowerCase()}`)
       .then(data => data.json())
       .then((categories) => {
         const newState = categories.map(category => category[filterBy]);
@@ -252,7 +272,7 @@ class ListContainer extends Component {
     const options = categories.map(category => <option>{category}</option>);
 
     return (
-      <div className="lists-containers" >
+      <div >
         <div id="banner">
           {/* <img  className="banner-image" src="https://cdn.shopify.com/s/files/1/1434/2870/products/IMG_4567_1024x1024.JPG?v=1533897343" ></img> */}
           <div>
@@ -265,14 +285,14 @@ class ListContainer extends Component {
               <div>
               <select className="filter-buttons" onChange={event => getFilters(event)}>
                 <option disabled selected value> Filter </option>
-                <option>Brand</option>
+                <option>brand</option>
                 {/* <option>size</option> */}
-                <option>Condition</option>
-                <option>Size</option>
+                <option>condition</option>
+                <option>size</option>
               </select>
 
               <select className="filter-buttons" onChange={event => filterProduct(event)}>
-                <option disabled selected value> Filter Options </option>
+                <option disabled selected value> Filter By </option>
                 {options}
               </select>
               </div>
@@ -296,8 +316,10 @@ class ListContainer extends Component {
               />
             ) : null
           }
+          <div className="lists-containers">
           <List listing={this.state.listing} />
           {/* <Form  /> */}
+          </div>
         </div>
       </div>
     );
