@@ -43,15 +43,17 @@ body {
   position: relative;
 }
 .formBackground{
-    background: goldenrod;
+    background: rgb(192, 192, 192, 0.5);
     width: 300px;
-    opacity: 0.9;
     width: 100%;
     height: 100%;
     z-index: 1;
     position: fixed;
     top:0;
     left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 div.loginContainer {
@@ -79,11 +81,11 @@ h1{
   font-family: cursive;
 }
 
-.uglyForm{
+/* .uglyForm{
    position: fixed;
    left: 40%;
    top:40%;
-}
+} */
 .popup{
     background: yellow;
     position: fixed;
@@ -134,4 +136,28 @@ h4{
   margin: 10px;
   padding: 10px;
 
+}
+
+#formTitle {
+  margin-bottom: 10px;
+}
+
+.formInput {
+  margin-bottom: 10px;
+  height: 50px;
+  width: 300px;
+  font-size: 25px;
+}
+
+#formContainer {
+  padding: 100px;
+  display: flex;
+  position: fixed;
+  height: 700px;
+  width: 500px;
+  background-color: white;
+  border-radius: 25px;
+  border: 2px solid black;
+  z-index: 1000;
+  box-sizing: border-box;
 }
