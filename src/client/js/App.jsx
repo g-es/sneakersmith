@@ -138,6 +138,12 @@ class App extends Component {
 
   updateTitle(event) {
     this.setState({
+<<<<<<< HEAD
+      title: event.target.value,
+    });
+  }
+
+=======
         title:event.target.value,
       })
   } 
@@ -146,10 +152,11 @@ class App extends Component {
       imgUrl:event.target.value
     })
   }
+>>>>>>> master
   render() {
     return (
       <div>
-        <nav>
+        {/* <nav>
           <button>login</button>
           <button onClick={this.togglePopup}>post</button>
           <br />
@@ -181,7 +188,8 @@ class App extends Component {
             />
           ) : null
         }
-        <List listing={this.state.listing} />
+        <List listing={this.state.listing} /> */}
+        <Signup />
       </div>
     );
   }

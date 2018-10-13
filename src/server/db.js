@@ -19,9 +19,7 @@ const initOptions = {
 
 const pgp = require('pg-promise')(initOptions);
 
-console.log(process.env.SQL_URL);
-
-const db = pgp('postgres://ydumjrcw:Po-cSeTIsFLIbV433LVf7XO0vnDqEWQq@baasu.db.elephantsql.com:5432/ydumjrcw');
+const db = pgp(process.env.SQL_URL);
 
 module.exports = db;
 
