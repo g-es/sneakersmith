@@ -14,13 +14,29 @@ const CLOUDINARY_UPLOAD_PRESET = 'savvseld';
 // import MoreInfo from "./components/MoreInfo";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: 'false',
+    };
+
+    this.updateLoggedInStatus = this.updateLoggedInStatus.bind(this);
+  }
+
+  updateLoggedInStatus() {
+    const { isLoggedIn } = this.state;
+    this.setState({ isLoggedIn: !isLoggedIn });
+  }
+
   render() {
+    const { isLoggedIn } = this.state;
+    const updateLoggedInStatus = this;
     return (
       <BrowserRouter>
         <div>
-          <Navigation />
+          <Navigation isLoggedIn={isLoggedIn} />
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/login" render={() => <Login updateLoggedInStatus={updateLoggedInStatus} />} />
             <Route path="/signup" component={Signup} />
             <Route path="/" component={ListContainer} />
           </Switch>
