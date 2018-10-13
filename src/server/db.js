@@ -13,7 +13,7 @@ const initOptions = {
     console.log('QUERY:', e.query);
   },
   receive(data, result, e) {
-    console.log('DATA: ', data);
+    // console.log('DATA: ', data);
   },
 };
 

@@ -16,10 +16,13 @@ class SingleBox extends React.Component {
   }
 
   render() {
-    // console.log(this.props.content,'sth missing in content')
+    console.log(this.props.content.imgurl,'sth missing in content')
     return (
       <div className='singleBox'>
         <h1>image should go here</h1>
+        {/* uid, title, brand, condition, size, price, imgurl */}
+        <img className='imgBox' src={this.props.content.imgurl}></img>
+        <h4>imgurl: {this.props.content.imgurl}</h4>
         <h4>brand: {this.props.content.brand}</h4>
         <h4>title: {this.props.content.title}</h4>
         <h4>price: {this.props.content.price}</h4>
