@@ -75,24 +75,29 @@ module.exports = {
     db.any('SELECT * FROM listing WHERE brand = $1;', [brand])
       .then((data) => {
       // success;
-        console.log('Sucess.', data);
-      })
-      .catch((error) => {
+      console.log('Sucess.');
+      res.status(200).send(data)
+    })
+    .catch((error) => {
       // error;
-        console.log(error);
-      });
+      console.log(error);
+      res.sendStatus(404);
+    });
   },
   filterByCondition: (req, res) => {
     const { condition } = req.params;
     db.any('SELECT * FROM listing WHERE condition = $1;', [condition])
       .then((data) => {
       // success;
-        console.log('Sucess.', data);
-      })
-      .catch((error) => {
+      console.log('Sucess.');
+      res.status(200).send(data)
+
+    })
+    .catch((error) => {
       // error;
-        console.log(error);
-      });
+      console.log(error);
+      res.send(error);
+    });
   },
   filterByUser: (req, res) => {
     const { uid } = req.params;

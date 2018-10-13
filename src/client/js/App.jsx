@@ -34,6 +34,8 @@ class App extends Component {
     this.updateTitle = this.updateTitle.bind(this);
     // this.updateUrl = this.updateUrl.bind(this);
     this.handleUploadImage = this.handleUploadImage.bind(this);
+    this.handleBrand = this.handleBrand.bind(this);
+
   }
 
   componentDidMount() {
@@ -170,14 +172,57 @@ class App extends Component {
     .then((res) => {
       console.log('did it work?', res.data.url);
       this.setState({
-        imgUrl: res.data.url
+        imgUrl: res.data.url,
       })
     })
     .catch((err) => {
       console.log(err);
     })
   }
-
+handleBrand(event) {
+  if(event.target.value === 'brand'){
+    console.log('brand!!!!')
+    fetch('/filterbybrand/:brand')
+    .then(data => {
+      console.log(data)
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err,'errrr');
+    })
+    .then(data => {
+      console.log(data,'in brand')  
+    })
+  }
+  // else if(event.target.value === 'size'){
+  //   console.log('size!!!!');
+  //   fetch('/filterbybrand/:size')
+  //   .then(data => {
+  //     console.log(data)
+  //     return data.json();
+  //   })
+  //   .catch((err) => {
+  //     console.log(err,'errrr');
+  //   })
+  //   .then(data => {
+  //     console.log(data,'in size')  
+  //   })
+  // }
+  else if(event.target.value === 'condition'){
+    console.log('condition!!!!');
+    fetch('filterbycondition/:condition')
+    .then(data => {
+      console.log(data)
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err,'errrr');
+    })
+    .then(data => {
+      console.log(data,'in condition')  
+    })
+  }
+}
   render() {
     return (
       <div>
@@ -186,15 +231,17 @@ class App extends Component {
           <button onClick={this.togglePopup}>post</button>
           <br />
 
-          <select>
+          <select  onChange={(event)=>{
+              return this.handleBrand(event)}
+              }>
             <option defaultValue="kevin">----kevin----</option>
             <option>brand</option>
-            <option>size</option>
+            {/* <option>size</option> */}
             <option>condition</option>
           </select>
 
           <select>
-            <option>get lots of stuff back from db, how</option>
+            <option>array of options</option>
           </select>
 
         </nav>
