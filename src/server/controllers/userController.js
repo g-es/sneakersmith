@@ -12,6 +12,7 @@ module.exports = {
       .then((data) => {
         // success;
         console.log('Sucess.');
+        res.send('Success.');
       })
       .catch((error) => {
         // error;
@@ -27,9 +28,10 @@ module.exports = {
         // console.log('Sucess.', data);
         if (data.length !== 0) {
           const hash = data[0].password;
-          bcrypt.compare(password, hash, (err, res) => {
-            if (res === true) {
+          bcrypt.compare(password, hash, (err, res2) => {
+            if (res2 === true) {
               console.log('Login sucessful.');
+              res.send('Success.');
             } else {
               console.log('Login failed.');
             }

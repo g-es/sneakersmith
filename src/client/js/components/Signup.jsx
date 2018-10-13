@@ -39,7 +39,10 @@ class Signup extends Component {
       body: JSON.stringify({ username, password, email }),
     })
       .then(() => alert('Signup successful.'))
-      .catch(err => console.log('Signup failed.'));
+      .catch((err) => {
+        alert('Login failed.');
+        console.log('Login failed.');
+      });
   }
 
   render() {
