@@ -108,11 +108,13 @@ module.exports = {
   },
   imageParser: (req, res) => {
     console.log(req.file);
+    console.log('hit controller');
     const image = {};
     image.url = req.file.url;
     image.id = req.file.public_id;
+    res.redirect('/');
 
-    // will.create(image) // save image information in database
+    // Image.create(image) // save image information in database
     // .then((newImage) => {
     //   console.log('what is Image?');
     //   res.json(newImage)
