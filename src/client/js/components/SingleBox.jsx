@@ -16,21 +16,22 @@ class SingleBox extends React.Component {
   }
 
   render() {
-    console.log(this.props.content.imgurl,'sth missing in content')
     return (
       <div className='singleBox'>
         <h1>image should go here</h1>
         {/* uid, title, brand, condition, size, price, imgurl */}
         <img className='imgBox' src={this.props.content.imgurl}></img>
-        <h4>imgurl: {this.props.content.imgurl}</h4>
+        {/* <h4>imgurl: {this.props.content.imgurl}</h4>
         <h4>brand: {this.props.content.brand}</h4>
         <h4>title: {this.props.content.title}</h4>
         <h4>price: {this.props.content.price}</h4>
         <h4>size: {this.props.content.size}</h4>
-        <h4>condition: {this.props.content.condition}</h4>
+        <h4>condition: {this.props.content.condition}</h4> */}
         <button onClick={this.togglePopup}>show popup</button>
         {this.state.showPopup ? 
-          <Popup text='Close Me' togglePopup={this.togglePopup}/> : null
+          <Popup text='Close Me' togglePopup={this.togglePopup}
+          allProps={this.props.content}
+          /> : null
         }
         </div>
       );
@@ -39,9 +40,17 @@ class SingleBox extends React.Component {
 
 class Popup extends React.Component {
     render() {
+      console.log(this.props.allProps)
       return (
         <div className='popup'>
             <h1>test</h1>
+            <img className='innerImgBox' src={this.props.allProps.imgurl}></img>
+            <h4>imgurl: {this.props.allProps.imgurl}</h4>
+        <h4>brand: {this.props.allProps.brand}</h4>
+        <h4>title: {this.props.allProps.title}</h4>
+        <h4>price: {this.props.allProps.price}</h4>
+        <h4>size: {this.props.allProps.size}</h4>
+        <h4>condition: {this.props.allProps.condition}</h4>
           <button onClick={this.props.togglePopup}>close me</button>
         </div>
       );

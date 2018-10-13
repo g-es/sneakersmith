@@ -56,10 +56,12 @@ module.exports = {
     .then((data) => {
       // success;
       console.log('Sucess.');
+      res.status(200).send(data)
     })
     .catch((error) => {
       // error;
       console.log(error);
+      res.sendStatus(404);
     });
   },
   filterByCondition: (req, res) => {
@@ -68,10 +70,13 @@ module.exports = {
     .then((data) => {
       // success;
       console.log('Sucess.');
+      res.status(200).send(data)
+
     })
     .catch((error) => {
       // error;
       console.log(error);
+      res.send(error);
     });
   },
   filterByUser: (req, res) => {

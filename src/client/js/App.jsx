@@ -3,6 +3,10 @@ import Form from './components/Form.jsx';
 import List from './components/List.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
+import axios from 'axios';
+
+let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/paulsg10/image/upload';
+let CLOUDINARY_UPLOAD_PRESET = 'savvseld';
 
 // import MoreInfo from "./components/MoreInfo";
 
@@ -28,7 +32,9 @@ class App extends Component {
     this.updateSelectedSize = this.updateSelectedSize.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
-    this.updateUrl = this.updateUrl.bind(this);
+    // this.updateUrl = this.updateUrl.bind(this);
+    this.handleUploadImage = this.handleUploadImage.bind(this);
+    this.handleBrand = this.handleBrand.bind(this);
 
   }
 
@@ -42,13 +48,13 @@ class App extends Component {
       .catch((err) => {
         console.log(err,'errrr');
       })
-  .then(data => {
-    console.log(data,'listing')
-    this.setState({
-      ...this.state,
-      listing: data,
-    });
-  })
+      .then(data => {
+        console.log(data,'listing')
+        this.setState({
+          ...this.state,
+          listing: data,
+        });
+      })
   }
 
   createNew() {
@@ -141,11 +147,82 @@ class App extends Component {
         title:event.target.value,
       })
   } 
-  updateUrl(event) {
-    this.setState({
-      imgUrl:event.target.value
+  // updateUrl(event) {
+  //   this.setState({
+  //     imgUrl:event.target.value
+  //   })
+  // }
+
+  handleUploadImage(event) {
+    event.preventDefault();
+
+    let file = event.target.files[0];
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    axios({
+      url: CLOUDINARY_URL,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: formData
+    })
+    .then((res) => {
+      console.log('did it work?', res.data.url);
+      this.setState({
+        imgUrl: res.data.url,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
+handleBrand(event) {
+  if(event.target.value === 'brand'){
+    console.log('brand!!!!')
+    fetch('/filterbybrand/:brand')
+    .then(data => {
+      console.log(data)
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err,'errrr');
+    })
+    .then(data => {
+      console.log(data,'in brand')  
+    })
+  }
+  // else if(event.target.value === 'size'){
+  //   console.log('size!!!!');
+  //   fetch('/filterbybrand/:size')
+  //   .then(data => {
+  //     console.log(data)
+  //     return data.json();
+  //   })
+  //   .catch((err) => {
+  //     console.log(err,'errrr');
+  //   })
+  //   .then(data => {
+  //     console.log(data,'in size')  
+  //   })
+  // }
+  else if(event.target.value === 'condition'){
+    console.log('condition!!!!');
+    fetch('filterbycondition/:condition')
+    .then(data => {
+      console.log(data)
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err,'errrr');
+    })
+    .then(data => {
+      console.log(data,'in condition')  
+    })
+  }
+}
   render() {
     return (
       <div>
@@ -154,15 +231,17 @@ class App extends Component {
           <button onClick={this.togglePopup}>post</button>
           <br />
 
-          <select>
+          <select  onChange={(event)=>{
+              return this.handleBrand(event)}
+              }>
             <option defaultValue="kevin">----kevin----</option>
             <option>brand</option>
-            <option>size</option>
+            {/* <option>size</option> */}
             <option>condition</option>
           </select>
 
           <select>
-            <option>get lots of stuff back from db, how</option>
+            <option>array of options</option>
           </select>
 
         </nav>
@@ -178,10 +257,12 @@ class App extends Component {
               updateTitle={this.updateTitle}
               updatePrice={this.updatePrice}
               updateUrl={this.updateUrl}
+              handleUploadImage={this.handleUploadImage}
             />
           ) : null
         }
         <List listing={this.state.listing} />
+        {/* <Form  /> */}
       </div>
     );
   }
