@@ -45,16 +45,16 @@ module.exports = {
   },
   getListing: (req, res) => {
     db.any('SELECT * FROM listing;')
-    .then((data) => {
-    // success;
-      console.log('Sucess.');
-      res.json(data);
-    })
-    .catch((error) => {
-    // error;
-      console.log(error);
-      res.sendStatus(404);
-    })
+      .then((data) => {
+        // success;
+        console.log('Sucess.');
+        res.json(data);
+      })
+      .catch((error) => {
+        // error;
+        console.log(error);
+        res.sendStatus(404);
+      });
   },
   postListing: (req, res) => {
     const {
@@ -75,41 +75,56 @@ module.exports = {
     db.any('SELECT * FROM listing WHERE brand = $1;', [brand])
       .then((data) => {
       // success;
-      console.log('Sucess.');
-      res.status(200).send(data)
-    })
-    .catch((error) => {
+        console.log('Sucess.');
+        res.status(200).send(data);
+      })
+      .catch((error) => {
       // error;
-      console.log(error);
-      res.sendStatus(404);
-    });
+        console.log(error);
+        res.sendStatus(404);
+      });
   },
   filterByCondition: (req, res) => {
     const { condition } = req.params;
     db.any('SELECT * FROM listing WHERE condition = $1;', [condition])
       .then((data) => {
       // success;
-      console.log('Sucess.');
-      res.status(200).send(data)
-
-    })
-    .catch((error) => {
+        console.log('Sucess.');
+        res.status(200).send(data);
+      })
+      .catch((error) => {
       // error;
-      console.log(error);
-      res.send(error);
-    });
+        console.log(error);
+        res.send(error);
+      });
   },
   filterByUser: (req, res) => {
     const { uid } = req.params;
     db.any('SELECT * FROM listing WHERE uid = $1;', [uid])
       .then((data) => {
       // success;
-        console.log('Sucess.', data);
+        console.log('Sucess.');
+        res.status(200).send(data);
       })
       .catch((error) => {
       // error;
-      console.log(error);
-    });
+        console.log(error);
+        res.send(error);
+      });
+  },
+  filterBySize: (req, res) => {
+    const { size } = req.params;
+    db.any('SELECT * FROM listing WHERE size = $1;', [size])
+      .then((data) => {
+      // success;
+        console.log('Sucess.');
+        res.status(200).send(data);
+      })
+      .catch((error) => {
+      // error;
+        console.log(error);
+        res.send(error);
+      });
   },
   imageParser: (req, res) => {
     console.log(req.file);
@@ -125,5 +140,20 @@ module.exports = {
     //   res.json(newImage)
     // })
     // .catch(err => console.log(err));
-  }
-}
+  },
+  getCategories: (req, res) => {
+    const { filter } = req.params;
+    console.log(filter);
+    db.any(`SELECT DISTINCT ${filter} FROM listing`)
+      .then((data) => {
+        // success;
+        console.log('Sucess.', data);
+        res.json(data);
+      })
+      .catch((error) => {
+        // error;
+        console.log(error);
+        res.sendStatus(404);
+      });
+  },
+};
