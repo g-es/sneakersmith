@@ -4,6 +4,7 @@ import Form from './components/Form.jsx';
 import List from './components/List.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
+import Navigation from './components/Navigation.jsx';
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/paulsg10/image/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'savvseld';

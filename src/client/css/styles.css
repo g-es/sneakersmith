@@ -1,12 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #f4f4ef;
+}
+
+.navbar {
+  background: #fff;
+  color: rgb(69, 162, 228);
+  font-size: 32px;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.navbar h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 3px;
+  font-family: 'Roboto',sans-serif;
+}
+
+.center {
+  text-align: center;
+}
+
+#navBar {
+  width: auto;
+}
+
 .singleBox{
-    background: purple;
-    float: left;
-    width: 31%;
-    /* height: 700px; */
-    height: 400px;
-    margin: 0 1%;
-    margin-bottom: 20px;
-    position: relative;
+  background: white;
+  float: left;
+  width: 20%;
+  /* height: 700px; */
+  height: 80%;
+  margin: 0px 0px 20px 40px;
+  box-shadow: 10px 10px 12px 0 rgba(46, 60, 73, 0.05);
+  padding: 0px 10px 0px 10px;
+  position: relative;
 }
 .formBackground{
     background: goldenrod;
@@ -71,4 +109,12 @@ h4{
 }
 .innerImgBox{
   max-width: 350px;
+}
+
+.lists-containers {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
