@@ -56,6 +56,26 @@ class ListContainer extends Component {
       });
   }
 
+  componentDidUpdate() {
+    if (this.state.filterBy === '') {
+      fetch('/listing')
+        .then((data) => {
+          console.log(data);
+          return data.json();
+        })
+        .catch((err) => {
+          console.log(err, 'errrr');
+        })
+        .then((data) => {
+          console.log(data, 'listing');
+          this.setState({
+            ...this.state,
+            listing: data,
+          });
+        });
+    }
+  }
+
   createNew() {
     const newList = this.state.listing.slice();
     newList.push({
