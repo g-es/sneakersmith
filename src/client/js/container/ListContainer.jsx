@@ -246,7 +246,7 @@ class ListContainer extends Component {
 
   getFilters(event) {
     const filterBy = event.target.value;
-    fetch(`/categories/${filterBy}`)
+    fetch(`/categories/${filterBy.toLowerCase()}`)
       .then(data => data.json())
       .then((categories) => {
         const newState = categories.map(category => category[filterBy]);
@@ -272,45 +272,55 @@ class ListContainer extends Component {
     const options = categories.map(category => <option>{category}</option>);
 
     return (
-      <div>
-        <div>
-          <nav>
-            <button>login</button>
-            <button onClick={this.togglePopup}>post</button>
-            <br />
-
-            <select onChange={event => getFilters(event)}>
-              <option disabled selected value> -- select an option -- </option>
-              <option>brand</option>
-              {/* <option>size</option> */}
-              <option>condition</option>
-              <option>size</option>
-            </select>
-
-            <select onChange={event => filterProduct(event)}>
-              <option disabled selected value> -- select an option -- </option>
-              {options}
-            </select>
-
-          </nav>
+      <div >
+        <div id="banner">
+          {/* <img  className="banner-image" src="https://cdn.shopify.com/s/files/1/1434/2870/products/IMG_4567_1024x1024.JPG?v=1533897343" ></img> */}
+          <div>
+            <h1 className="post-heading" >BUY AND SELL SNEAKERS</h1>
+          </div>
         </div>
-        {this.state.showPopup
-          ? (
-            <Form
-              createNew={this.createNew}
-              togglePopup={this.togglePopup}
-              updateSelectedBrand={this.updateSelectedBrand}
-              updateSelectedSize={this.updateSelectedSize}
-              updateSelectedCondition={this.updateSelectedCondition}
-              updateTitle={this.updateTitle}
-              updatePrice={this.updatePrice}
-              updateUrl={this.updateUrl}
-              handleUploadImage={this.handleUploadImage}
-            />
-          ) : null
-        }
-        <List listing={this.state.listing} />
-        {/* <Form  /> */}
+        <div>
+          <div>
+            <nav className="post-button-containers">
+              <div>
+              <select className="filter-buttons" onChange={event => getFilters(event)}>
+                <option disabled selected value> Filter </option>
+                <option>brand</option>
+                {/* <option>size</option> */}
+                <option>condition</option>
+                <option>size</option>
+              </select>
+
+              <select className="filter-buttons" onChange={event => filterProduct(event)}>
+                <option disabled selected value> Filter By </option>
+                {options}
+              </select>
+              </div>
+
+              <button className="post-button" onClick={this.togglePopup}>Post</button>
+            
+            </nav>
+          </div>
+          {this.state.showPopup
+            ? (
+              <Form
+                createNew={this.createNew}
+                togglePopup={this.togglePopup}
+                updateSelectedBrand={this.updateSelectedBrand}
+                updateSelectedSize={this.updateSelectedSize}
+                updateSelectedCondition={this.updateSelectedCondition}
+                updateTitle={this.updateTitle}
+                updatePrice={this.updatePrice}
+                updateUrl={this.updateUrl}
+                handleUploadImage={this.handleUploadImage}
+              />
+            ) : null
+          }
+          <div className="lists-containers">
+          <List listing={this.state.listing} />
+          {/* <Form  /> */}
+          </div>
+        </div>
       </div>
     );
   }

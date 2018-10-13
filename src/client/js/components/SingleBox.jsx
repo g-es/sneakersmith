@@ -18,16 +18,15 @@ class SingleBox extends React.Component {
   render() {
     return (
       <div className='singleBox'>
-        <h1>image should go here</h1>
         {/* uid, title, brand, condition, size, price, imgurl */}
         <img className='imgBox' src={this.props.content.imgurl}></img>
-        {/* <h4>imgurl: {this.props.content.imgurl}</h4>
-        <h4>brand: {this.props.content.brand}</h4>
-        <h4>title: {this.props.content.title}</h4>
-        <h4>price: {this.props.content.price}</h4>
-        <h4>size: {this.props.content.size}</h4>
-        <h4>condition: {this.props.content.condition}</h4> */}
-        <button onClick={this.togglePopup}>show popup</button>
+        {/* <h4>imgurl: {this.props.content.imgurl}</h4> */}
+        {/* <h4>brand: {this.props.content.brand}</h4> */}
+        <h4>{this.props.content.title}</h4>
+        <h4>${this.props.content.price}</h4>
+        {/* <h4>size: {this.props.content.size}</h4> */}
+        {/* <h4>condition: {this.props.content.condition}</h4> */}
+        <button className="detail-button" onClick={this.togglePopup}>Show more details</button>
         {this.state.showPopup ? 
           <Popup text='Close Me' togglePopup={this.togglePopup}
           allProps={this.props.content}
