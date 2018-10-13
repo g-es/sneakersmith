@@ -29,15 +29,16 @@ class Form extends React.Component {
 
             <input type="text" placeholder="title" onChange={(event) => { this.props.updateTitle(event); }}></input><br></br>
             <input type="text" placeholder="price" onChange={(event) => { this.props.updatePrice(event); }}></input><br></br>
+            <input type="text" placeholder="imgUrl" onChange={(event) => { this.props.updateUrl(event); }}></input><br></br>
 
             <select id="selectBrand" onChange={(event) => { this.props.updateSelectedBrand(event); }}>
               <option defaultValue="test"> -- Brand -- </option>
-              <option>paul's brand 1</option>
-              <option>paul's brand 2</option>
-              <option>paul's brand 3</option>
-              <option>paul's brand 4</option>
-              <option>paul's brand 5</option>
-              <option>paul's brand 6</option>
+               <option>paul's brand 1</option>
+               <option>paul's brand 2</option>
+               <option>paul's brand 3</option>
+               <option>paul's brand 4</option>
+               <option>Converse</option>
+               <option>Jordan</option>
 
             </select>
             <br></br>

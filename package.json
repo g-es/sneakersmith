@@ -16,6 +16,7 @@
     "parcel-bundler": "^1.10.3"
   },
   "dependencies": {
+    "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.11.0",
     "dotenv": "^6.1.0",
