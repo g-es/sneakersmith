@@ -1,4 +1,5 @@
 const db = require('../db.js');
+const parser = require('../cloudinary.js');
 
 module.exports = {
   createUser: (req, res) => {
@@ -83,5 +84,18 @@ module.exports = {
       // error;
       console.log(error);
     });
+  },
+  imageParser: (req, res) => {
+    console.log(req.file);
+    const image = {};
+    image.url = req.file.url;
+    image.id = req.file.public_id;
+
+    // will.create(image) // save image information in database
+    // .then((newImage) => {
+    //   console.log('what is Image?');
+    //   res.json(newImage)
+    // })
+    // .catch(err => console.log(err));
   }
 }
