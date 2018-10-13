@@ -31,7 +31,7 @@ class Signup extends Component {
 
   createUser() {
     const { username, password, email } = this.state;
-    fetch('/login', {
+    fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
