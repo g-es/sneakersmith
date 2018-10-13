@@ -28,11 +28,7 @@ body {
 }
 
 .center {
-  text-align: center;
-}
-
-#navBar {
-  width: auto;
+  /* text-align: center; */
 }
 
 .singleBox{
@@ -59,8 +55,9 @@ body {
 }
 
 div.loginContainer {
+  background-color:rgb(69, 162, 228);
   margin: auto;
-  background-color: lightblue;
+  margin-top: 100px;
   width: 300px;
   padding: 20px;
   box-shadow: 5px 5px #888888;
@@ -117,4 +114,24 @@ h4{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
+}
+
+.navigation {
+  background-color:rgb(69, 162, 228);
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+}
+
+.navButton {
+  background-color: red;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+
 }
