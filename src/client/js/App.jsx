@@ -3,6 +3,10 @@ import Form from './components/Form.jsx';
 import List from './components/List.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
+import axios from 'axios';
+
+let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/paulsg10/image/upload';
+let CLOUDINARY_UPLOAD_PRESET = 'savvseld';
 
 // import MoreInfo from "./components/MoreInfo";
 
@@ -28,8 +32,8 @@ class App extends Component {
     this.updateSelectedSize = this.updateSelectedSize.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
-    this.updateUrl = this.updateUrl.bind(this);
-
+    // this.updateUrl = this.updateUrl.bind(this);
+    this.handleUploadImage = this.handleUploadImage.bind(this);
   }
 
   componentDidMount() {
@@ -42,13 +46,13 @@ class App extends Component {
       .catch((err) => {
         console.log(err,'errrr');
       })
-  .then(data => {
-    console.log(data,'listing')
-    this.setState({
-      ...this.state,
-      listing: data,
-    });
-  })
+      .then(data => {
+        console.log(data,'listing')
+        this.setState({
+          ...this.state,
+          listing: data,
+        });
+      })
   }
 
   createNew() {
@@ -138,25 +142,46 @@ class App extends Component {
 
   updateTitle(event) {
     this.setState({
-<<<<<<< HEAD
-      title: event.target.value,
-    });
-  }
-
-=======
         title:event.target.value,
       })
   } 
-  updateUrl(event) {
-    this.setState({
-      imgUrl:event.target.value
+  // updateUrl(event) {
+  //   this.setState({
+  //     imgUrl:event.target.value
+  //   })
+  // }
+
+  handleUploadImage(event) {
+    event.preventDefault();
+
+    let file = event.target.files[0];
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    axios({
+      url: CLOUDINARY_URL,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: formData
+    })
+    .then((res) => {
+      console.log('did it work?', res.data.url);
+      this.setState({
+        imgUrl: res.data.url
+      })
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
->>>>>>> master
+
   render() {
     return (
       <div>
-        {/* <nav>
+        <nav>
           <button>login</button>
           <button onClick={this.togglePopup}>post</button>
           <br />
@@ -185,11 +210,12 @@ class App extends Component {
               updateTitle={this.updateTitle}
               updatePrice={this.updatePrice}
               updateUrl={this.updateUrl}
+              handleUploadImage={this.handleUploadImage}
             />
           ) : null
         }
-        <List listing={this.state.listing} /> */}
-        <Signup />
+        <List listing={this.state.listing} />
+        {/* <Form  /> */}
       </div>
     );
   }
