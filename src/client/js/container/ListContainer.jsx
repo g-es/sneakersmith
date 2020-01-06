@@ -20,7 +20,7 @@ class ListContainer extends Component {
       condition: '',
       imgUrl: '',
       listing: [{
-        imgUrl: '', id: 1, title: 'Test', price: 10, condition: 'NWT', brand: 'xx', size: 100,
+        imgUrl: 'http://res.cloudinary.com/paulsg10/image/upload/v1539456790/zwyb03ok1hsidmcyo87a.jpg', lid: 1, title: 'Test', price: 10, condition: 'NWT', brand: 'xx', size: 100,
       }],
       categories: [],
       filterBy: '',
@@ -39,16 +39,20 @@ class ListContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/listing')
-      .then((data) => {
-        console.log(data);
-        return data.json();
+    fetch('http://localhost:3000/listing', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+    })
+      .then((response) => {
+        return response.json();
       })
       .catch((err) => {
         console.log(err, 'errrr');
       })
       .then((data) => {
-        console.log(data, 'listing');
         this.setState({
           ...this.state,
           listing: data,
@@ -57,23 +61,25 @@ class ListContainer extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.filterBy === '') {
-      fetch('/listing')
-        .then((data) => {
-          console.log(data);
-          return data.json();
-        })
-        .catch((err) => {
-          console.log(err, 'errrr');
-        })
-        .then((data) => {
-          console.log(data, 'listing');
-          this.setState({
-            ...this.state,
-            listing: data,
-          });
-        });
-    }
+    // edit for now, uncomment later
+    // if (this.state.filterBy === '') {
+    //   console.log('what is going on here')
+    //   fetch('/listing')
+    //     .then((data) => {
+    //       console.log(data);
+    //       return data.json();
+    //     })
+    //     .catch((err) => {
+    //       console.log(err, 'errrr');
+    //     })
+    //     .then((data) => {
+    //       console.log(data, 'listing');
+    //       this.setState({
+    //         ...this.state,
+    //         listing: data,
+    //       });
+    //     });
+    // }
   }
 
   createNew() {
@@ -93,7 +99,7 @@ class ListContainer extends Component {
       listing: newList,
     });
 
-    // make the post request here?
+    // make the post request here
 
     fetch('/listing', {
       method: 'POST',
@@ -116,7 +122,6 @@ class ListContainer extends Component {
       }),
     })
       .then((data) => {
-        console.log(data, 'get back anything?');
         return data.json();
       });
     // .then(newItem => {
@@ -272,21 +277,20 @@ class ListContainer extends Component {
     const options = categories.map(category => <option>{category}</option>);
 
     return (
-      <div >
+      <div>
         <div id="banner">
           {/* <img  className="banner-image" src="https://cdn.shopify.com/s/files/1/1434/2870/products/IMG_4567_1024x1024.JPG?v=1533897343" ></img> */}
           <div>
-            <h1 className="post-heading" >BUY AND SELL SNEAKERS</h1>
+            <h1 className="post-heading">BUY AND SELL SNEAKERS</h1>
           </div>
         </div>
-        <div>
-          <div>
-            <nav className="post-button-containers">
-              <div>
+        
+        <div id="threeButtons">
+          <nav className="post-button-containers">
+            <div>
               <select className="filter-buttons" onChange={event => getFilters(event)}>
                 <option disabled selected value> Filter </option>
                 <option>brand</option>
-                {/* <option>size</option> */}
                 <option>condition</option>
                 <option>size</option>
               </select>
@@ -295,33 +299,33 @@ class ListContainer extends Component {
                 <option disabled selected value> Filter By </option>
                 {options}
               </select>
-              </div>
+            </div>
 
-              <button className="post-button" onClick={this.togglePopup}>Post</button>
-            
-            </nav>
-          </div>
-          {this.state.showPopup
-            ? (
-              <Form
-                createNew={this.createNew}
-                togglePopup={this.togglePopup}
-                updateSelectedBrand={this.updateSelectedBrand}
-                updateSelectedSize={this.updateSelectedSize}
-                updateSelectedCondition={this.updateSelectedCondition}
-                updateTitle={this.updateTitle}
-                updatePrice={this.updatePrice}
-                updateUrl={this.updateUrl}
-                handleUploadImage={this.handleUploadImage}
-              />
-            ) : null
-          }
-          <div className="lists-containers">
+            <button type="button" className="post-button" onClick={this.togglePopup}>Post</button>
+
+          </nav>
+        </div>
+
+        {this.state.showPopup
+          ? (
+            <Form
+              createNew={this.createNew}
+              togglePopup={this.togglePopup}
+              updateSelectedBrand={this.updateSelectedBrand}
+              updateSelectedSize={this.updateSelectedSize}
+              updateSelectedCondition={this.updateSelectedCondition}
+              updateTitle={this.updateTitle}
+              updatePrice={this.updatePrice}
+              updateUrl={this.updateUrl}
+              handleUploadImage={this.handleUploadImage}
+            />
+          ) : null
+        }
+        <div className="lists-containers">
           <List listing={this.state.listing} />
-          {/* <Form  /> */}
-          </div>
         </div>
       </div>
+    
     );
   }
 }

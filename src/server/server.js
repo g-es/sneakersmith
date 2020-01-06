@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const bodyParser = require('body-parser');
 const userController = require('./controllers/userController.js');
 const parser = require('./cloudinary.js');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

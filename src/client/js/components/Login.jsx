@@ -60,8 +60,8 @@ class Login extends Component {
         <input id="password" className="loginInput" type="password" onChange={updatePassword} />
         <br />
         <br />
-        <button className="loginButton" onClick={validateUser}>Login</button>
-        <button className="loginButton" onClick={redirectToSignup}>Sign up</button>
+        <button type="button" className="loginButton" onClick={validateUser}>Login</button>
+        <button type="button" className="loginButton" onClick={redirectToSignup}>Sign up</button>
       </div>
     );
   }

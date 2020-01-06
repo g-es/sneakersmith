@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Navigation = (props) => {
   const { isLoggedIn } = props;
-  console.log(isLoggedIn);
+  console.log(isLoggedIn, 'isLoggedIn in Navigation');
   const loginButton = isLoggedIn ? <NavLink to="/login"><button className="navButton">Login</button></NavLink> : <NavLink to="/"><button className="navButton">Logout</button></NavLink>;
 
   return (

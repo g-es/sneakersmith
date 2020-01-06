@@ -49,7 +49,6 @@ module.exports = {
     db.any('SELECT * FROM listing;')
       .then((data) => {
         // success;
-        console.log('Sucess.');
         res.json(data);
       })
       .catch((error) => {
@@ -74,11 +73,10 @@ module.exports = {
   },
   filterByBrand: (req, res) => {
     const { brand } = req.params;
-    console.log('adfa', brand);
     db.any('SELECT * FROM listing WHERE brand = $1;', [brand])
       .then((data) => {
       // success;
-        console.log('Sucess.');
+        console.log('filterby brand Sucess.', data);
         res.status(200).send(data);
       })
       .catch((error) => {

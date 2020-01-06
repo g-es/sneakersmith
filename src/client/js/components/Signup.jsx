@@ -60,7 +60,7 @@ class Signup extends Component {
         <input id="email" className="loginInput" onChange={updateEmail} />
         <br />
         <br />
-        <button className="loginButton" onClick={createUser}>Sign up</button>
+        <button type="button" className="loginButton" onClick={createUser}>Sign up</button>
       </div>
     );
   }

@@ -17,7 +17,6 @@ class Form extends React.Component {
       }`,
     );
   }
-  // where should these functions go
 
   render() {
     return (
@@ -39,7 +38,6 @@ class Form extends React.Component {
                 <option>adidas</option>
                 <option>Jordan</option>
                 <option>Converse</option>
-
               </select>
               <br />
 
